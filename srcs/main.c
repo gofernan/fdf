@@ -1,27 +1,33 @@
 #include "../include/fdf.h"
 #include "../include/get_next_line.h"
 
-void		fill_pixel(char *img_data, int x, int y, unsigned int color);
-void ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int deal_key(int key, void *param)
+//void		fill_pixel(char *img_data, int x, int y, unsigned int color);
+/*int deal_key(int key, void *param)
 {
 	ft_putchar('X');
 	//mlx_pixel_put(mlx_ptr, win_ptr, 10, 10, 0xFFFFFF);
 	return (0);
-}
+}*/
 int main(int argc, char **argv)
 {
 	t_data	data;
+	int		file;
+	char	*filedata;
 	int		x;
 	int		x1 = 0;
 	int		x2 = 800;
 	int		y1 = 0;
 	int		y2 = 0;
 
+	//msgito("hola");
+	if (argc != 2)
+		return (error_msg("Error\n"));
+	if ((file = open(argv[1], O_RDONLY)) < 0)
+		return (error_msg("Can't open the file\n"));
+	file = open(argv[1], O_RDONLY);
+	filedata = malloc(
+	while (read(argv[1], &filedata, 1000)
+	retrieve_data(file, data);
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, 800, 600, "mlx 42");
 	data.img_ptr = mlx_new_image(data.mlx_ptr, 800, 600);

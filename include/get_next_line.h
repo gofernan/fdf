@@ -13,7 +13,6 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # define BUFF_SIZE 999
-# include <fcntl.h>
 
 typedef struct		s_listfd
 {
@@ -21,6 +20,5 @@ typedef struct		s_listfd
 	int				fdnum;
 	struct s_listfd	*next;
 }					t_listfd;
-
 int					get_next_line(const int fd, char **line);
 #endif

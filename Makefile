@@ -8,11 +8,13 @@ LDIR = libft
 _SRCS = main.c \
 		get_next_line.c \
 		retrieve_data.c \
+		check_errors.c
 		#srcs/fill_map.c
 SRCS = $(patsubst %, $(SDIR)/%, $(_SRCS))
 _OBJS = $(_SRCS:.c=.o)
 OBJS = $(patsubst %, $(ODIR)/%, $(_OBJS))
-_DEPS = fdf.h
+_DEPS = fdf.h \
+		get_next_line.h
 DEPS = $(patsubst %, $(IDIR)/%, $(_DEPS))
 _LIBFT = libft.a
 LIBFT = $(patsubst %, $(LDIR)/%, $(_LIBFT))
@@ -27,31 +29,31 @@ $(ODIR)/%.o: $(SDIR)/%.c $(LIBFT) $(DEPS)
 
 $(NAME): $(OBJS)
 	@echo "\033[1;33mCompiling fdf...\033[0m"
-	@$(CC) -o $@ $< $(CFLAGS) $(LIBFT_LIB) -I$(IDIR)
+	$(CC) -o $@ $^ -I$(IDIR) $(CFLAGS) $(LIBFT_LIB)
 	@$(DONE)
 
 $(LIBFT):
 	@echo "\033[1;33mCompiling libft...\033[0m"
-	@$(MAKE) -C $(LDIR)
+	$(MAKE) -C $(LDIR)
 	@$(DONE)
 
 clean:
 	@echo "\033[1;33mCleaning fdf object files...\033[0m"
-	@$(RM) $(OBJS)
+	$(RM) $(OBJS)
 	@$(DONE)
 	@echo "\033[1;33mCleaning libft object files...\033[0m"
-	@$(MAKE) -C $(LDIR) clean
+	$(MAKE) -C $(LDIR) clean
 	@$(DONE)
 
 fclean:
 	@echo "\033[1;33mCleaning fdf...\033[0m"
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 	@$(DONE)
 	@echo "\033[1;33mCleaning fdf object files...\033[0m"
-	@$(RM) $(OBJS)
+	$(RM) $(OBJS)
 	@$(DONE)
 	@echo "\033[1;33mCleaning libft & libft object files...\033[0m"
-	@$(MAKE) -C $(LDIR) fclean
+	$(MAKE) -C $(LDIR) fclean
 	@$(DONE)
 
 re: fclean all
