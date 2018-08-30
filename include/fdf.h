@@ -22,7 +22,8 @@ typedef struct		s_data
 	int				endian;
 }					t_data;
 int					main(int argc, char **argv);
-int					error_msg(char *msg);
-int					check_errors(char c);
-int					retrieve_data(int fd, t_data data);
+void				error_msg_clean(char **str);
+void				free_rows(int **rows, int rowsnum);
+int					specific_error(char *errormsg);
+int					retrieve_data(char *file, int ***matrix);
 #endif

@@ -8,7 +8,8 @@ LDIR = libft
 _SRCS = main.c \
 		get_next_line.c \
 		retrieve_data.c \
-		check_errors.c
+		check_errors.c \
+		utils.c \
 		#srcs/fill_map.c
 SRCS = $(patsubst %, $(SDIR)/%, $(_SRCS))
 _OBJS = $(_SRCS:.c=.o)
@@ -25,11 +26,11 @@ DONE = echo "\033[0;32m[ ✔ ] Done\033[0m"
 all: $(NAME)
 
 $(ODIR)/%.o: $(SDIR)/%.c $(LIBFT) $(DEPS)
-	$(CC) -c $< -I$(IDIR) -o $@
+	$(CC) -c $< -g -I$(IDIR) -o $@
 
 $(NAME): $(OBJS)
 	@echo "\033[1;33mCompiling fdf...\033[0m"
-	$(CC) -o $@ $^ -I$(IDIR) $(CFLAGS) $(LIBFT_LIB)
+	$(CC) -o $@ -g $^ -I$(IDIR) $(CFLAGS) $(LIBFT_LIB)
 	@$(DONE)
 
 $(LIBFT):
