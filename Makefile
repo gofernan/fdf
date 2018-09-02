@@ -10,7 +10,10 @@ _SRCS = main.c \
 		retrieve_data.c \
 		check_errors.c \
 		utils.c \
-		#srcs/fill_map.c
+		fill_pixel.c \
+		fill_map.c \
+		parallel.c
+
 SRCS = $(patsubst %, $(SDIR)/%, $(_SRCS))
 _OBJS = $(_SRCS:.c=.o)
 OBJS = $(patsubst %, $(ODIR)/%, $(_OBJS))
