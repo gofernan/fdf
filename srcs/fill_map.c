@@ -2,8 +2,8 @@
 
 int		fill_map(t_data *pdata)
 {
-	size_t value;
-	parallel_proj(pdata);
+	draw_points(pdata);
+	draw_lines(pdata);
 
 	return (0);
 }

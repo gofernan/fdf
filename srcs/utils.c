@@ -1,12 +1,5 @@
 #include "../include/fdf.h"
 
-/*void		free_rows(int **rows, int rowsnum)
-{
-	while (rowsnum--)
-		free(rows[rowsnum]);
-	rows = NULL;
-}*/
-
 void		free_retr(char **line, char ***rowstr)
 {
 	int i;
@@ -28,4 +21,11 @@ void		free_matrix(t_data *pdata, int createdl)
 		free((pdata->matrix)[--createdl]);
 	free(pdata->matrix);
 	pdata->matrix = NULL;
+}
+
+int		matrix_error(t_data *pdata, char **line, char ***rowstr, int createdl)
+{
+	free_retr(line, rowstr);
+	free_matrix(pdata, createdl);
+	return (specific_error("Matrix input malformed\n"));
 }

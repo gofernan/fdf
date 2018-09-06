@@ -25,31 +25,7 @@ void	store_matrix(t_data *pdata, char **rowstr, int clines)
 
 	i = -1;
 	while (++i < pdata->mcols)
-		(pdata->matrix)[clines][i] = ft_atoi(rowstr[i]);
-}
-
-int		matrix_error(t_data *pdata, char **line, char ***rowstr, int createdl)
-{
-	//int i;
-
-	free_retr(line, rowstr);
-	free_matrix(pdata, createdl);
-	//i = -1;
-	//ft_strdel(line);
-	/*while (createdl > 0)
-		free((pdata->matrix)[--createdl]);
-	free(pdata->matrix);
-	pdata->matrix = NULL;
-	*/
-	/*while ((*rowstr)[++i] != 0)
-	{
-		free((*rowstr)[i]);
-		(*rowstr)[i] = NULL;
-	}
-	free(*rowstr);
-	*rowstr = NULL;
-	*/
-	return (specific_error("Matrix input malformed\n"));
+		(pdata->matrix)[clines][i] = TILE_Z * ft_atoi(rowstr[i]);
 }
 
 int		read_rows(t_data *pdata, int fd, int *content, int clines)
@@ -122,7 +98,7 @@ int		retrieve_data(char *file, t_data *pdata)
 	if (!(pdata->matrix = (int **)malloc(sizeof(int *) * pdata->mrows)))
 		exit(EXIT_FAILURE);
 	if ((fd = open(file, O_RDONLY)))
-		//error_msg_clean(&matrix); modify
+		//error_msg_clean(&matrix);
 	if (read_rows(pdata, fd, &content, clines))
 		return (1);
 	if (content == -1)

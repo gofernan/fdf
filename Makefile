@@ -9,10 +9,14 @@ _SRCS = main.c \
 		get_next_line.c \
 		retrieve_data.c \
 		check_errors.c \
+		create_map.c \
+		transformations.c \
 		utils.c \
-		fill_pixel.c \
+		put_pixel.c \
 		fill_map.c \
-		parallel.c
+		draws.c \
+		bresenham.c \
+		stored_correctly.c 
 
 SRCS = $(patsubst %, $(SDIR)/%, $(_SRCS))
 _OBJS = $(_SRCS:.c=.o)
