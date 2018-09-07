@@ -1,4 +1,5 @@
 #include "../include/fdf.h"
+
 int			draw_lines(t_data *pdata)
 {
 	int i;

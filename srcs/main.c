@@ -8,8 +8,8 @@ void		init_v(t_data *pdata)
 	pdata->img_ptr = mlx_new_image(pdata->mlx_ptr, W_WIDTH, W_HEIGHT);
 	pdata->img_data = mlx_get_data_addr(pdata->img_ptr, &pdata->bpp, &pdata->size_line, &pdata->endian);
 	pdata->pixelbytes = pdata->bpp / 8;
-	pdata->tlimit = W_WIDTH * W_HEIGHT * pdata->bpp / 8;
-	pdata->rlimit = pdata->size_line / pdata->pixelbytes;
+	pdata->tlimit = W_WIDTH * W_HEIGHT * pdata->bpp / 8 - 1;
+	pdata->rlimit = pdata->size_line / pdata->pixelbytes - 1;
 }
 
 

@@ -10,9 +10,9 @@
 
 #define W_WIDTH 1600
 #define W_HEIGHT 800
-#define TILE_WIDTH 500
-#define TILE_HEIGHT 500
-#define TILE_Z 500
+#define TILE_WIDTH 40
+#define TILE_HEIGHT 40
+#define TILE_Z 40
 
 typedef struct		s_data
 {
