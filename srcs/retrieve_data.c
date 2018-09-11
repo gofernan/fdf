@@ -25,7 +25,7 @@ void	store_matrix(t_data *pdata, char **rowstr, int clines)
 
 	i = -1;
 	while (++i < pdata->mcols)
-		(pdata->matrix)[clines][i] = TILE_Z * ft_atoi(rowstr[i]);
+		(pdata->matrix)[clines][i] = ft_atoi(rowstr[i]);
 }
 
 int		read_rows(t_data *pdata, int fd, int *content, int clines)

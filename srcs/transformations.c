@@ -1,17 +1,5 @@
 #include "../include/fdf.h"
 
-float		rotation(t_data *pdata, float x, float y, int axis)
-{
-	float radian;
-
-	radian = pdata->degrees * M_PI / 180;
-	if (axis == 1)
-		return (x * cos(radian) - y * sin(radian));
-	else if (axis == 2)
-		return (x * sin(radian) + y * cos(radian));
-	return (0.0);
-}
-
 void		iso(int *x, int *y, int *z)
 {
 	int temp_x;
@@ -20,18 +8,102 @@ void		iso(int *x, int *y, int *z)
 	*x = (*x - *y) * cos(0.523599);
 	*y = -*z + (temp_x + *y) * sin(0.523599);
 }
-void	scaling(int *x, int *y)
+
+void		rotation_x(t_data *pdata, int *x, int *y, int *z)
 {
-	float temp_x;
-	float temp_y;
+	int temp_y;
+
+	temp_y = *y;
+	*y = (temp_y * cos(pdata->rot_radx) + (*z * -sin(pdata->rot_radx)));
+	*z = (temp_y * sin(pdata->rot_radx) + (*z * cos(pdata->rot_radx)));
+}
+
+void		rotation_y(t_data *pdata, int *x, int *y, int *z)
+{
+	int temp_x;
 
 	temp_x = *x;
+	*x = (temp_x * cos(pdata->rot_rady) + (*z * sin(pdata->rot_rady)));
+	*z = (temp_x * -sin(pdata->rot_rady) + (*z * cos(pdata->rot_rady)));
+}
+
+void		rotation_z(t_data *pdata, int *x, int *y, int *z)
+{
+	int temp_x;
+
+	temp_x = *x;
+	*x = (*x * cos(pdata->rot_radz) + (*y * sin(pdata->rot_radz)));
+	*y = (temp_x * sin(pdata->rot_radz) + (*y * cos(pdata->rot_radz)));
+}
+void		rotation(t_data *pdata, int *x, int *y, int *z)
+{
+	if (pdata->rot_x)
+	{
+		rotation_x(pdata, x, y, z);
+		iso(x, y, z);
+	}
+	if (pdata->rot_y)
+	{
+		rotation_y(pdata, x, y, z);
+		iso(x, y, z);
+	}
+	if (pdata->rot_z)
+	{
+		rotation(pdata, x, y, z);
+		iso(x, y, z);
+	}
+}
+/*
+void		rotation(t_data *pdata, int *x, int *y, int *z)
+{
+	int temp_x;
+	int temp_y;
+	int temp_z;
+
+	float new_x;
+	float new_y;
+	float new_z;
+
+	new_x = *x;
+	new_y = *y;
+	new_z = *z;
+
 	temp_y = *y;
-	//*x = -1 * *x;
-	//*y = 1 * *y;
-	// rotation
-	//*x = *y;
-	//*y = -1 * temp_x;
-	*x = (temp_x * cos(0.523599)) + (temp_y * -sin(0.523599));
-	*y = (temp_x * sin(0.523599)) + (temp_y * cos(0.523599));
+	temp_x = *x;
+	temp_z = *z;
+	if (pdata->rot_y)
+	{
+		new_x = (new_x * cos(pdata->rot_rady) + (new_z * sin(pdata->rot_rady)));
+		new_z = (temp_x * -sin(pdata->rot_rady) + (new_z * cos(pdata->rot_rady)));
+	}
+	if (pdata->rot_x)
+	{
+		new_y = (new_y * cos(pdata->rot_radx) + (new_z * sin(pdata->rot_radx)));
+		new_z = (temp_y * -sin(pdata->rot_radx) + (new_z * cos(pdata->rot_radx)));
+	}
+	temp_x = new_x;
+	if (pdata->rot_z)
+	{
+		new_x = (new_x * cos(pdata->rot_radz) + (new_y * sin(pdata->rot_radz)));
+		new_y = (temp_x * sin(pdata->rot_radz) + (new_y * cos(pdata->rot_radz)));
+	}
+	*x = new_x;
+	*y = new_y;
+	*z = new_z;
+}
+*/
+void		scaling(t_data *pdata, int *x, int *y)
+{
+
+	//if (pdata->scaling_v > 0)
+	//{
+		*x = *x * pdata->scaling_v;
+		*y = *y * pdata->scaling_v;
+	//}
+	/*else
+	{
+		*x = *x * -pdata->scaling_v;
+		*y = *y / -pdata->scaling_v;
+	}
+	*/
 }

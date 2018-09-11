@@ -10,10 +10,12 @@ _SRCS = main.c \
 		retrieve_data.c \
 		check_errors.c \
 		create_map.c \
+		img_transform.c \
 		transformations.c \
+		clear_img.c \
 		utils.c \
 		put_pixel.c \
-		fill_map.c \
+		draw_map.c \
 		draws.c \
 		bresenham.c \
 		stored_correctly.c 

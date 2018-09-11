@@ -10,79 +10,47 @@ else
  return 0;
 }
 
-void		draw_line(t_data *pdata, int x1, int y1, int x2, int y2)
+void		draw_line(t_data *pdata)
 {
-	/*
-	int dx;
-	int dy;
-	int p;
-	int xend;
 	int x;
 	int y;
+	int temp;
+	int p;
+	int i;
 
-	dx = abs(x1 - x2);
-	dy = abs(y1 - y2);
-	p = 2 * dy - dx;
-	if (x1 > x2)
+	x = pdata->draw->x1;
+	y = pdata->draw->y1;
+	pdata->draw->dx = abs(pdata->draw->x2 - pdata->draw->x1);
+	pdata->draw->dy = abs(pdata->draw->y2 - pdata->draw->y1);
+	pdata->draw->s1 = sign(pdata->draw->x2 - pdata->draw->x1);
+	pdata->draw->s2 = sign(pdata->draw->y2 - pdata->draw->y1);
+	pdata->draw->swap = 0;
+	//put_pixel(pdata, x, y, 0xFFFFFF);
+	if (pdata->draw->dy > pdata->draw->dx)
 	{
-		x = x2;
-		y = y2;
-		xend = x1;
+		temp = pdata->draw->dx;
+		pdata->draw->dx = pdata->draw->dy;
+		pdata->draw->dy = temp;
+		pdata->draw->swap = 1;
 	}
-	else
+	p = 2 * pdata->draw->dy - pdata->draw->dx;
+	for (i = 0; i < pdata->draw->dx; i++)
 	{
-		x = x1;
-		y = y1;
-		xend = x2;
-	}
-	put_pixel(pdata, x, y, 0xFFFFFF);
-	while (x < xend)
-	{
-		x++;
-		if (p < 0)
-			p = p + (2 * dy);
-		else
+		if (i > 0)
+		put_pixel(pdata, x, y, 0xFF00FF);
+		while (p >= 0)
 		{
-			y++;
-			p = p + (2 * (dy - dx));
+			p = p - 2 * pdata->draw->dx;
+			if(pdata->draw->swap)
+				x += pdata->draw->s1;
+			else
+				y += pdata->draw->s2;
 		}
-		put_pixel(pdata, x, y, 0xFFFFFF);
+		p = p + 2 * pdata->draw->dy;
+		if(pdata->draw->swap)
+			y += pdata->draw->s2;
+		else
+			x += pdata->draw->s1;
 	}
-	*/
-int x,y,dx,dy,swap,temp,s1,s2,p,i;
-
-x = x1;
-y = y1;
-dx = abs(x2-x1);
-dy = abs(y2-y1);
-s1 = sign(x2-x1);
-s2 = sign(y2-y1);
-swap = 0;
-put_pixel(pdata, x, y, 0xFFFFFF);
-if(dy > dx)
-{
-	temp = dx;
-	dx = dy;
-	dy = temp;
-	swap = 1;
-}
-p = 2 * dy - dx;
-for(i=0;i<dx;i++)
- {
- put_pixel(pdata, x, y, 0xFFFFFF);
- while(p>=0)
-  {
-  p=p-2*dx;
-  if(swap)
-   x+=s1;
-  else
-   y+=s2;
-  }
- p=p+2*dy;
- if(swap)
-  y+=s2;
- else
-  x+=s1;
- }
-put_pixel(pdata, x, y, 0xFFFFFF);
+//put_pixel(pdata, x, y, 0xFFFFFF);
 }
