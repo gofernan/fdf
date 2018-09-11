@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   transformations.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/11 09:36:35 by gofernan          #+#    #+#             */
+/*   Updated: 2018/09/11 10:08:55 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 void		iso(int *x, int *y, int *z)
@@ -35,6 +47,7 @@ void		rotation_z(t_data *pdata, int *x, int *y, int *z)
 	*x = (*x * cos(pdata->rot_radz) + (*y * sin(pdata->rot_radz)));
 	*y = (temp_x * sin(pdata->rot_radz) + (*y * cos(pdata->rot_radz)));
 }
+
 void		rotation(t_data *pdata, int *x, int *y, int *z)
 {
 	if (pdata->rot_x)
@@ -53,6 +66,7 @@ void		rotation(t_data *pdata, int *x, int *y, int *z)
 		iso(x, y, z);
 	}
 }
+
 /*
 void		rotation(t_data *pdata, int *x, int *y, int *z)
 {
@@ -92,9 +106,9 @@ void		rotation(t_data *pdata, int *x, int *y, int *z)
 	*z = new_z;
 }
 */
+
 void		scaling(t_data *pdata, int *x, int *y)
 {
-
 	//if (pdata->scaling_v > 0)
 	//{
 		*x = *x * pdata->scaling_v;

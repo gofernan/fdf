@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clear_img.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/11 09:35:30 by gofernan          #+#    #+#             */
+/*   Updated: 2018/09/11 09:45:18 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 int			clear_img(t_data *pdata)
@@ -6,19 +18,6 @@ int			clear_img(t_data *pdata)
 	int j;
 	int pixel;
 
-	/*i = -1;
-	while (++i < pdata->mrows)
-	{
-		j = -1;
-		while (++j < pdata->mcols)
-		{
-			pixel = pdata->map_x[i][j] * pdata->pixelbytes + pdata->map_y[i][j]	* pdata->size_line;
-			if (pdata->map_x[i][j] >= 0 && pdata->map_x[i][j] <= pdata->rlimit &&
-					pdata->map_y[i][j] >= 0 && pixel <= pdata->tlimit)
-				pdata->img_data[pixel] = 0;
-		}
-	}
-	*/
 	i = -1;
 	while (++i <= pdata->tlimit)
 	{

@@ -1,6 +1,6 @@
 NAME = fdf
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -Lminilibx -lmlx -lm -Iminilibx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -lm -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
 SDIR = srcs
 ODIR = objs
 IDIR = include

@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/11 09:36:11 by gofernan          #+#    #+#             */
+/*   Updated: 2018/09/11 10:06:55 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 #include "../include/get_next_line.h"
-void		init_v(t_data *pdata)
+
+void			init_v(t_data *pdata)
 {
 	pdata->mlx_ptr = mlx_init();
 	pdata->win_ptr = mlx_new_window(pdata->mlx_ptr, W_WIDTH, W_HEIGHT, "FDF");
@@ -43,9 +56,9 @@ int			key_press(int keycode, t_data *pdata)
 		close_window(pdata);
 	else if (keycode == 69)
 	{
-		if (pdata->scaling_v > 0.0  && pdata->scaling_v < 32.0 )
+		if (pdata->scaling_v > 0.0 && pdata->scaling_v < 32.0)
 			pdata->scaling_v *= 2.0;
-			pdata->scaling = 1;
+		pdata->scaling = 1;
 	}
 	else if (keycode == 78)
 	{
@@ -79,7 +92,8 @@ int			key_press(int keycode, t_data *pdata)
 	//	pdata->clear = 1;
 	return (0);
 }
-void		information(t_data *pdata)
+
+void	information(t_data *pdata)
 {
 	printf("bpp es: %d\n", pdata->bpp);
 	printf("size_line es %d\n", pdata->size_line);
@@ -88,14 +102,7 @@ void		information(t_data *pdata)
 	stored_correctly(pdata);
 }
 
-//void		fill_pixel(char *img_data, int x, int y, unsigned int color);
-/*int deal_key(int key, void *param)
-{
-	ft_putchar('X');
-	//mlx_pixel_put(mlx_ptr, win_ptr, 10, 10, 0xFFFFFF);
-	return (0);
-}*/
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_data	data;
 

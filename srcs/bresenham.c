@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bresenham.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/11 09:35:15 by gofernan          #+#    #+#             */
+/*   Updated: 2018/09/11 09:59:59 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
-int sign(int x)
+int			sign(int x)
 {
-if (x > 0)
- return 1;
-else if(x < 0)
- return -1;
-else
- return 0;
+	if (x > 0)
+		return (1);
+	else if (x < 0)
+		return (-1);
+	else
+		return (0);
 }
 
 void		draw_line(t_data *pdata)
@@ -34,20 +46,21 @@ void		draw_line(t_data *pdata)
 		pdata->draw->swap = 1;
 	}
 	p = 2 * pdata->draw->dy - pdata->draw->dx;
+	// replace with while
 	for (i = 0; i < pdata->draw->dx; i++)
 	{
 		if (i > 0)
-		put_pixel(pdata, x, y, 0xFF00FF);
+			put_pixel(pdata, x, y, 0xFF00FF);
 		while (p >= 0)
 		{
 			p = p - 2 * pdata->draw->dx;
-			if(pdata->draw->swap)
+			if (pdata->draw->swap)
 				x += pdata->draw->s1;
 			else
 				y += pdata->draw->s2;
 		}
 		p = p + 2 * pdata->draw->dy;
-		if(pdata->draw->swap)
+		if (pdata->draw->swap)
 			y += pdata->draw->s2;
 		else
 			x += pdata->draw->s1;

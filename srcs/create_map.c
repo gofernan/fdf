@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/11 09:35:34 by gofernan          #+#    #+#             */
+/*   Updated: 2018/09/11 10:00:46 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 int			convert_map(t_data *pdata)
@@ -11,18 +23,18 @@ int			convert_map(t_data *pdata)
 		j = -1;
 		while (++j < pdata->mcols)
 		{
-				(pdata->map_x)[i][j] = j * TILE_WIDTH;
-				(pdata->map_y)[i][j] = i * TILE_HEIGHT;
-				(pdata->map_z)[i][j] = (pdata->matrix)[i][j] * TILE_Z;
-				if (pdata->rot_x || pdata->rot_y || pdata->rot_z)
-					rotation(pdata, &(pdata->map_x)[i][j], &(pdata->map_y)[i][j], &(pdata->map_z)[i][j]);
-				else
-					iso(&(pdata->map_x)[i][j], &(pdata->map_y)[i][j], &(pdata->map_z)[i][j]);
-				if (!pdata->def_data)
-				{
-					if (pdata->scaling)
-						scaling(pdata, &pdata->map_x[i][j], &pdata->map_y[i][j]);
-				}
+			(pdata->map_x)[i][j] = j * TILE_WIDTH;
+			(pdata->map_y)[i][j] = i * TILE_HEIGHT;
+			(pdata->map_z)[i][j] = (pdata->matrix)[i][j] * TILE_Z;
+			if (pdata->rot_x || pdata->rot_y || pdata->rot_z)
+				rotation(pdata, &(pdata->map_x)[i][j], &(pdata->map_y)[i][j], &(pdata->map_z)[i][j]);
+			else
+				iso(&(pdata->map_x)[i][j], &(pdata->map_y)[i][j], &(pdata->map_z)[i][j]);
+			if (!pdata->def_data)
+			{
+				if (pdata->scaling)
+					scaling(pdata, &pdata->map_x[i][j], &pdata->map_y[i][j]);
+			}
 		}
 	}
 	if (pdata->def_data)
@@ -37,7 +49,6 @@ int			create_map(t_data *pdata)
 
 	i = -1;
 	j = -1;
-
 	if (!(pdata->map_x = (int **)malloc(sizeof(int *) * pdata->mrows)))
 		//freematrix
 		exit(EXIT_FAILURE);

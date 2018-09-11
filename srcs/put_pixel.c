@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   put_pixel.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/11 09:36:19 by gofernan          #+#    #+#             */
+/*   Updated: 2018/09/11 09:53:12 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 void		put_pixel(t_data *pdata, int x, int y, unsigned int color)
 {
-	char *newaddr;
-	int pixel;
-	int limit;
+	char		*newaddr;
+	int			pixel;
+	int			limit;
 
 	if (x >= 0 && x <= pdata->rlimit && y >= 0)
 	{
