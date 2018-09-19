@@ -66,6 +66,7 @@ typedef struct		s_data
 
 int					main(int argc, char **argv);
 void				init_v(t_data *pdata);
+void				init_start(t_data *pdata);
 int					matrix_error(t_data *pdata, char **line, char ***rowstr, int clines);
 int					retrieve_data(char *file, t_data *pdata);
 int					specific_error(char *errormsg);
