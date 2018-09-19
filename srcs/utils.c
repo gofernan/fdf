@@ -35,9 +35,40 @@ void		free_matrix(t_data *pdata, int createdl)
 	pdata->matrix = NULL;
 }
 
-int			matrix_error(t_data *pdata, char **line, char ***rowstr, int createdl)
+void		free_map(t_data *pdata, int opt, int index)
 {
-	free_retr(line, rowstr);
-	free_matrix(pdata, createdl);
-	return (specific_error("Matrix input malformed\n"));
+	int value;
+
+	value = 0;
+	while ((opt >= 3 && opt <= 5) && value <= index)
+	{
+		free(pdata->map_x[value]);
+		free(pdata->map_y[value]);
+		free(pdata->map_z[value]);
+		value++;
+	}
+	if (opt == 4 || opt == 5) 
+		free(pdata->map_x[value]);
+	if (opt == 5)
+		free(pdata->map_y[value]);
+	if (opt >= 1 && opt <= 5)
+		free(pdata->map_x);
+	if (opt >= 2 && opt <= 5)
+		free(pdata->map_y);
+	if (opt >= 3 && opt <= 5)
+		free(pdata->map_z);
+	free_matrix(pdata, pdata->mrows);
+	exit(EXIT_FAILURE);
+}
+
+int			clear_img(t_data *pdata)
+{
+	int i;
+	int j;
+	int pixel;
+
+	i = -1;
+	while (++i <= pdata->tlimit)
+		(pdata->img_data)[i] = 0;
+	return (0);
 }

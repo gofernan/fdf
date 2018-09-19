@@ -82,7 +82,7 @@ int		count_rows(char *file)
 	if (!(str = (char *)malloc(sizeof(char) * 1000)))
 		exit(EXIT_FAILURE);
 	if ((fd = open(file, O_RDONLY)) < 0)
-		error_msg_clean(&str);
+		error_msg_clean(&str, NULL);
 	while ((res = read(fd, str, 1000)) > 0)
 	{
 		i = -1;
@@ -91,9 +91,9 @@ int		count_rows(char *file)
 				counter++;
 	}
 	if (res < 0)
-		error_msg_clean(&str);
+		error_msg_clean(&str, NULL);
 	if (close(fd) < 0)
-		error_msg_clean(&str);
+		error_msg_clean(&str, NULL);
 	ft_strdel(&str);
 	return (counter);
 }
@@ -109,8 +109,8 @@ int		retrieve_data(char *file, t_data *pdata)
 	pdata->mrows = count_rows(file);
 	if (!(pdata->matrix = (int **)malloc(sizeof(int *) * pdata->mrows)))
 		exit(EXIT_FAILURE);
-	if ((fd = open(file, O_RDONLY)))
-		//error_msg_clean(&matrix);
+	if ((fd = open(file, O_RDONLY)) < 0)
+		error_msg_clean(NULL, &pdata->matrix);
 	if (read_rows(pdata, fd, &content, clines))
 		return (1);
 	if (content == -1)

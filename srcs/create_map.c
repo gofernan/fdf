@@ -27,90 +27,36 @@ int			convert_map(t_data *pdata)
 			(pdata->map_y)[i][j] = i * TILE_HEIGHT;
 			(pdata->map_z)[i][j] = (pdata->matrix)[i][j] * TILE_Z;
 			if (pdata->rot_x || pdata->rot_y || pdata->rot_z)
-				rotation(pdata, &(pdata->map_x)[i][j], &(pdata->map_y)[i][j], &(pdata->map_z)[i][j]);
-			else
-				iso(&(pdata->map_x)[i][j], &(pdata->map_y)[i][j], &(pdata->map_z)[i][j]);
-			if (!pdata->def_data)
-			{
-				if (pdata->scaling)
-					scaling(pdata, &pdata->map_x[i][j], &pdata->map_y[i][j]);
+				rotation(pdata, &i, &j);
+			if (pdata->move_x || pdata->move_y)
+				move_xy(pdata, &i, &j);
+			if (pdata->scaling != 1.0)
+				scaling(pdata, &pdata->map_x[i][j], &pdata->map_y[i][j]);
 			}
 		}
-	}
-	if (pdata->def_data)
-		pdata->def_data = 0;
 	return (0);
 }
 
 int			create_map(t_data *pdata)
 {
 	int i;
-	int j;
 
-	i = -1;
-	j = -1;
+	i = 0;
 	if (!(pdata->map_x = (int **)malloc(sizeof(int *) * pdata->mrows)))
-		//freematrix
-		exit(EXIT_FAILURE);
+		free_map(pdata, 0, 0);
 	if (!(pdata->map_y = (int **)malloc(sizeof(int *) * pdata->mrows)))
-	{
-		//freematrix
-		free(pdata->map_x);
-		exit(EXIT_FAILURE);
-	}
+		free_map(pdata, 1, 0);
 	if (!(pdata->map_z = (int **)malloc(sizeof(int *) * pdata->mrows)))
-	{
-		//freematrix
-		free(pdata->map_x);
-		free(pdata->map_y);
-		exit(EXIT_FAILURE);
-	}
-	while (++i < pdata->mrows)
+		free_map(pdata, 2, 0);
+	while (i < pdata->mrows)
 	{
 		if (!((pdata->map_x)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
-		{
-			while (++j < i)
-			{
-				free((pdata->map_x)[j]);
-				free((pdata->map_y)[j]);
-				free((pdata->map_z)[j]);
-			}
-			//freematrix
-			free(pdata->map_x);
-			free(pdata->map_y);
-			free(pdata->map_z);
-			exit(EXIT_FAILURE);
-		}
+			free_map(pdata, 3, i - 1);
 		if (!((pdata->map_y)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
-		{
-			while (++j < i)
-			{
-				free((pdata->map_x)[j]);
-				free((pdata->map_y)[j]);
-				free((pdata->map_z)[j]);
-			}
-			//freematrix
-			free((pdata->map_x)[j]);
-			free(pdata->map_x);
-			free(pdata->map_y);
-			free(pdata->map_z);
-			exit(EXIT_FAILURE);
-		}
+			free_map(pdata, 4, i - 1);
 		if (!((pdata->map_z)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
-		{
-			while (++j < i)
-			{
-				free(pdata->map_x[j]);
-				free(pdata->map_y[j]);
-				free(pdata->map_z[j]);
-			}
-			free(pdata->map_x[j]);
-			free(pdata->map_y[j]);
-			free(pdata->map_x);
-			free(pdata->map_y);
-			free(pdata->map_z);
-			exit(EXIT_FAILURE);
-		}
+			free_map(pdata, 5, i - 1);
+		i++;
 	}
 	return (0);
 }
