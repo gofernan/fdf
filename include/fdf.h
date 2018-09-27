@@ -11,9 +11,9 @@
 
 #define W_WIDTH 1600
 #define W_HEIGHT 1200
-#define TILE_WIDTH 40
-#define TILE_HEIGHT 40
-#define TILE_Z 20
+//#define TILE_WIDTH 40
+//#define TILE_HEIGHT 40
+//#define TILE_Z 20
 
 typedef struct		s_draw
 {
@@ -21,6 +21,7 @@ typedef struct		s_draw
 	int				x2;
 	int				y1;
 	int				y2;
+	int				color[2];
 	int				dx;
 	int				dy;
 	int				swap;
@@ -37,7 +38,6 @@ typedef struct		s_data
 	int				bpp;
 	int				size_line;
 	int				endian;
-
 	t_draw			*draw;
 	int				proj;
 	int				pixelbytes;
@@ -47,9 +47,14 @@ typedef struct		s_data
 	int				**map_x;
 	int				**map_y;
 	int				**map_z;
+	int				xtile;
+	int				ytile;
+	int				ztile;
 	int				mrows;
 	int				mcols;
 	int				action;
+	int				reset;
+	int				info;
 	float			scaling;
 	int				rot_x;
 	int				rot_y;
@@ -75,7 +80,9 @@ void				free_retr(char **line, char ***rowstr);
 void				free_matrix(t_data *pdata, int createdl);
 void				free_map(t_data *pdata, int opt, int index);
 int					create_map(t_data *pdata);
+void				pre_convert_map(t_data *pdata);
 int					convert_map(t_data *pdata);
+int					map_size(t_data *pdata);
 int					draw_map(t_data *pdata);
 //int					draw_points(t_data *pdata);
 //int					draw_xlines(t_data *pdata);

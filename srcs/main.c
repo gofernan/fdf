@@ -21,10 +21,10 @@ void			init_start(t_data *pdata)
 	pdata->scaling = 1.0;
 	pdata->move_x = 0;
 	pdata->move_y = 0;
-	pdata->action = 0;
 	pdata->mouse_x = 0;
 	pdata->mouse_y = 0;
 	pdata->mouse_press = 0;
+	pdata->proj = 0;
 }
 
 void			init_v(t_data *pdata)
@@ -41,6 +41,15 @@ void			init_v(t_data *pdata)
 		free_matrix(pdata, pdata->mrows);
 		exit(EXIT_FAILURE);
 	}
+	if (W_WIDTH >= 400 && W_HEIGHT >= 140)
+		pdata->info = 1;
+	else
+		pdata->info = 0;
+	pdata->action = 0;
+	pdata->reset = 0;
+	pdata->xtile = 40;
+	pdata->ytile = 40;
+	pdata->ztile = 40;
 	init_start(pdata);
 }
 
@@ -56,8 +65,8 @@ int		main(int argc, char **argv)
 	printf("value mrows: %d, value mcols: %d\n", data.mrows, data.mcols);
 	init_v(&data);
 	//information(&data);
-	//pdata->proj = 1;
 	create_map(&data);
+	map_size(&data);
 	convert_map(&data);
 	draw_map(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_ptr, 0, 0);

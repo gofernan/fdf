@@ -46,11 +46,14 @@ void		draw_line(t_data *pdata)
 		pdata->draw->swap = 1;
 	}
 	p = 2 * pdata->draw->dy - pdata->draw->dx;
-	// replace with while
-	for (i = 0; i < pdata->draw->dx; i++)
+	i = -1;
+	while (++i < pdata->draw->dx)
 	{
 		if (i > 0)
-			put_pixel(pdata, x, y, 0xFF00FF);
+		{
+			put_pixel(pdata, x, y, 0x24FF00);
+			//put_pixel(pdata, x, y, get_color(pdata, &i));
+		}
 		while (p >= 0)
 		{
 			p = p - 2 * pdata->draw->dx;

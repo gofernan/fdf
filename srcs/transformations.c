@@ -45,8 +45,8 @@ void		rotation(t_data *pdata, int *i, int *j)
 	float fy;
 	float fz;
 
-	pdata->map_x[*i][*j] -= pdata->mcols / 2 * TILE_WIDTH;
-	pdata->map_y[*i][*j] -= pdata->mrows / 2 * TILE_HEIGHT;
+	pdata->map_x[*i][*j] -= pdata->mcols / 2 * pdata->xtile;
+	pdata->map_y[*i][*j] -= pdata->mrows / 2 * pdata->ytile;
 	fx = pdata->map_x[*i][*j];
 	fy = pdata->map_y[*i][*j];
 	fz = pdata->map_z[*i][*j];
@@ -59,8 +59,8 @@ void		rotation(t_data *pdata, int *i, int *j)
 	pdata->map_x[*i][*j] = fx;
 	pdata->map_y[*i][*j] = fy;
 	pdata->map_z[*i][*j] = fz;
-	pdata->map_x[*i][*j] += pdata->mcols / 2 * TILE_WIDTH;
-	pdata->map_y[*i][*j] += pdata->mrows / 2 * TILE_HEIGHT;
+	pdata->map_x[*i][*j] += pdata->mcols / 2 * pdata->xtile;
+	pdata->map_y[*i][*j] += pdata->mrows / 2 * pdata->ytile;
 }
 
 void		scaling(t_data *pdata, int *x, int *y)

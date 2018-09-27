@@ -19,7 +19,8 @@ _SRCS = main.c \
 		draws.c \
 		bresenham.c \
 		draw_info.c \
-		stored_correctly.c
+		stored_correctly.c \
+		center.c
 
 SRCS = $(patsubst %, $(SDIR)/%, $(_SRCS))
 _OBJS = $(_SRCS:.c=.o)

@@ -21,12 +21,14 @@ void		draw_xlines(t_data *pdata)
 	while (++i < pdata->mrows)
 	{
 		j = 0;
-		pdata->draw->y1 = (pdata->map_y)[i][j];
-		pdata->draw->x1 = (pdata->map_x)[i][j];
+		pdata->draw->y1 = (pdata->map_y)[i][j] + W_HEIGHT * 0.05;
+		pdata->draw->x1 = (pdata->map_x)[i][j] + W_WIDTH * 0.05;
+		//pdata->draw->color[0] = point_color(&i, &j);
 		while (j < pdata->mcols - 1)
 		{
-			pdata->draw->y2 = (pdata->map_y)[i][j + 1];
-			pdata->draw->x2 = (pdata->map_x)[i][j + 1];
+			pdata->draw->y2 = (pdata->map_y)[i][j + 1] + W_HEIGHT * 0.05;
+			pdata->draw->x2 = (pdata->map_x)[i][j + 1] + W_WIDTH * 0.05;
+			//pdata->draw->color[1] = point_color(&i, &j);
 			draw_line(pdata);
 			pdata->draw->x1 = pdata->draw->x2;
 			pdata->draw->y1 = pdata->draw->y2;
@@ -44,19 +46,18 @@ void		draw_ylines(t_data *pdata)
 	while (++j < pdata->mcols)
 	{
 		i = 0;
-		pdata->draw->y1 = (pdata->map_y)[i][j];
-		pdata->draw->x1 = (pdata->map_x)[i][j];
+		pdata->draw->y1 = (pdata->map_y)[i][j] + W_HEIGHT * 0.05;
+		pdata->draw->x1 = (pdata->map_x)[i][j] + W_WIDTH * 0.05;
 		while (i < pdata->mrows - 1)
 		{
-			pdata->draw->y2 = (pdata->map_y)[i + 1][j];
-			pdata->draw->x2 = (pdata->map_x)[i + 1][j];
+			pdata->draw->y2 = (pdata->map_y)[i + 1][j] + W_HEIGHT * 0.05;
+			pdata->draw->x2 = (pdata->map_x)[i + 1][j] + W_WIDTH * 0.05;
 			draw_line(pdata);
 			pdata->draw->x1 = pdata->draw->x2;
 			pdata->draw->y1 = pdata->draw->y2;
 			i++;
 		}
 	}
-	//draw_line(pdata, pdata->map_x[1][1] * TILE_WIDTH + W_WIDTH / 4, pdata->map_y[1][1] *  TILE_HEIGHT + W_HEIGHT / 4, pdata->map_x[9][8] * TILE_WIDTH + W_WIDTH / 4, pdata->map_y[9][8] * TILE_HEIGHT + W_HEIGHT / 4);
 }
 
 void		draw_points(t_data *pdata)
@@ -70,7 +71,7 @@ void		draw_points(t_data *pdata)
 		j = 0;
 		while (j < pdata->mcols)
 		{
-			put_pixel(pdata, (pdata->map_x)[i][j], (pdata->map_y)[i][j], 0x00FFFF);
+			put_pixel(pdata, (pdata->map_x)[i][j] + W_WIDTH * 0.05, (pdata->map_y)[i][j] + W_HEIGHT * 0.05, 0x00FFFF);
 			j++;
 		}
 	}

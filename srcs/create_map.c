@@ -23,17 +23,22 @@ int			convert_map(t_data *pdata)
 		j = -1;
 		while (++j < pdata->mcols)
 		{
-			(pdata->map_x)[i][j] = j * TILE_WIDTH;
-			(pdata->map_y)[i][j] = i * TILE_HEIGHT;
-			(pdata->map_z)[i][j] = (pdata->matrix)[i][j] * TILE_Z;
-			if (pdata->rot_x || pdata->rot_y || pdata->rot_z)
-				rotation(pdata, &i, &j);
-			if (pdata->move_x || pdata->move_y)
-				move_xy(pdata, &i, &j);
-			if (pdata->scaling != 1.0)
-				scaling(pdata, &pdata->map_x[i][j], &pdata->map_y[i][j]);
+			(pdata->map_x)[i][j] = j * pdata->ytile;
+			(pdata->map_y)[i][j] = i * pdata->xtile;
+			(pdata->map_z)[i][j] = (pdata->matrix)[i][j] * pdata->ztile;
+			if (!pdata->reset)
+			{
+				if (pdata->rot_x || pdata->rot_y || pdata->rot_z)
+					rotation(pdata, &i, &j);
+				if (pdata->proj)
+					iso(pdata, &i, &j);
+				if (pdata->move_x || pdata->move_y)
+					move_xy(pdata, &i, &j);
+				if (pdata->scaling != 1.0)
+					scaling(pdata, &pdata->map_x[i][j], &pdata->map_y[i][j]);
 			}
 		}
+	}
 	return (0);
 }
 
@@ -59,4 +64,14 @@ int			create_map(t_data *pdata)
 		i++;
 	}
 	return (0);
+}
+
+void		pre_convert_map(t_data *pdata)
+{
+	if (pdata->rot_y)
+		pdata->rot_rady = pdata->rot_y * M_PI / 180;
+	if (pdata->rot_x)
+		pdata->rot_radx = pdata->rot_x * M_PI / 180;
+	if (pdata->rot_z)
+		pdata->rot_radz = pdata->rot_z * M_PI / 180;
 }
