@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:36:11 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/11 10:06:55 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/09/28 16:16:39 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void			init_v(t_data *pdata)
 	pdata->mlx_ptr = mlx_init();
 	pdata->win_ptr = mlx_new_window(pdata->mlx_ptr, W_WIDTH, W_HEIGHT, "FDF");
 	pdata->img_ptr = mlx_new_image(pdata->mlx_ptr, W_WIDTH, W_HEIGHT);
-	pdata->img_data = mlx_get_data_addr(pdata->img_ptr, &pdata->bpp, &pdata->size_line, &pdata->endian);
+	pdata->img_data = mlx_get_data_addr(pdata->img_ptr, &pdata->bpp,
+			&pdata->size_line, &pdata->endian);
 	pdata->pixelbytes = pdata->bpp / 8;
 	pdata->tlimit = W_WIDTH * W_HEIGHT * pdata->bpp / 8 - 1;
 	pdata->rlimit = pdata->size_line / pdata->pixelbytes - 1;

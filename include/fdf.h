@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/28 16:42:27 by gofernan          #+#    #+#             */
+/*   Updated: 2018/09/28 16:42:30 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
 # include <unistd.h>
-# include "../minilibx/mlx.h"
-//# include <mlx.h>
+//# include "../minilibx/mlx.h"
+# include <mlx.h>
 # include <math.h>
 # include "../libft/include/libft.h"
 # include <stdio.h> // remove after use the printf function

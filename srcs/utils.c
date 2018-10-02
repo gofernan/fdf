@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:36:39 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/11 09:58:37 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/09/28 16:09:46 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		free_map(t_data *pdata, int opt, int index)
 		free(pdata->map_z[value]);
 		value++;
 	}
-	if (opt == 4 || opt == 5) 
+	if (opt == 4 || opt == 5)
 		free(pdata->map_x[value]);
 	if (opt == 5)
 		free(pdata->map_y[value]);

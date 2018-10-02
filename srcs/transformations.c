@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:36:35 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/11 10:08:55 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/09/28 16:09:12 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void		rotation(t_data *pdata, int *i, int *j)
 
 void		scaling(t_data *pdata, int *x, int *y)
 {
-		*x = *x * pdata->scaling;
-		*y = *y * pdata->scaling;
+	*x = *x * pdata->scaling;
+	*y = *y * pdata->scaling;
 }

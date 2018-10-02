@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:35:48 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/11 09:52:05 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/09/28 16:17:16 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ void		draw_points(t_data *pdata)
 		j = 0;
 		while (j < pdata->mcols)
 		{
-			put_pixel(pdata, (pdata->map_x)[i][j] + W_WIDTH * 0.05, (pdata->map_y)[i][j] + W_HEIGHT * 0.05, 0x00FFFF);
+			put_pixel(pdata, (pdata->map_x)[i][j] + W_WIDTH * 0.05,
+					(pdata->map_y)[i][j] + W_HEIGHT * 0.05, 0x00FFFF);
 			j++;
 		}
 	}
