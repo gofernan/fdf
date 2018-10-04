@@ -12,21 +12,33 @@
 
 #include "../include/fdf.h"
 
-int			convert_map(t_data *pdata)
+void		fill_values(t_data *pdata, int *i, int *j)
+{
+	(pdata->map_x)[*i][*j] = *j * pdata->xtile;
+	(pdata->map_y)[*i][*j] = *i * pdata->ytile;
+	(pdata->map_z)[*i][*j] = (pdata->matrix)[*i][*j] * pdata->ztile;
+	(pdata->map_col)[*i][*j] = (pdata->matrix)[*i][*j] * pdata->ztile;
+	if (pdata->map_col[*i][*j] < pdata->z_min)
+		pdata->z_min = pdata->map_col[*i][*j];
+	if (pdata->map_col[*i][*j] > pdata->z_max)
+		pdata->z_max = pdata->map_col[*i][*j];
+}
+
+void		convert_map(t_data *pdata)
 {
 	int i;
 	int j;
 
 	i = -1;
+	pdata->z_min = 0;
+	pdata->z_max = 0;
 	while (++i < pdata->mrows)
 	{
 		j = -1;
 		while (++j < pdata->mcols)
 		{
-			(pdata->map_x)[i][j] = j * pdata->xtile;
-			(pdata->map_y)[i][j] = i * pdata->ytile;
-			(pdata->map_z)[i][j] = (pdata->matrix)[i][j] * pdata->ztile;
-			if (!pdata->reset)
+			fill_values(pdata, &i, &j);
+			if (!pdata->reset || pdata->proj)
 			{
 				if (pdata->rot_x || pdata->rot_y || pdata->rot_z)
 					rotation(pdata, &i, &j);
@@ -39,7 +51,6 @@ int			convert_map(t_data *pdata)
 			}
 		}
 	}
-	return (0);
 }
 
 int			create_map(t_data *pdata)
@@ -53,14 +64,18 @@ int			create_map(t_data *pdata)
 		free_map(pdata, 1, 0);
 	if (!(pdata->map_z = (int **)malloc(sizeof(int *) * pdata->mrows)))
 		free_map(pdata, 2, 0);
+	if (!(pdata->map_col = (int **)malloc(sizeof(int *) * pdata->mrows)))
+		free_map(pdata, 3, 0);
 	while (i < pdata->mrows)
 	{
 		if (!((pdata->map_x)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
-			free_map(pdata, 3, i - 1);
-		if (!((pdata->map_y)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
 			free_map(pdata, 4, i - 1);
-		if (!((pdata->map_z)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
+		if (!((pdata->map_y)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
 			free_map(pdata, 5, i - 1);
+		if (!((pdata->map_z)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
+			free_map(pdata, 6, i - 1);
+		if (!((pdata->map_col)[i] = (int *)malloc(sizeof(int) * pdata->mcols)))
+			free_map(pdata, 7, i - 1);
 		i++;
 	}
 	return (0);

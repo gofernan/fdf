@@ -22,6 +22,12 @@ void		draw_info3(t_data *pdata)
 			0x00FFFFFF, "SIZE Z(MOD. 5,6):");
 	mlx_string_put(pdata->mlx_ptr, pdata->win_ptr, W_WIDTH - 200, 260,
 			0x00FFFFFF, ft_itoa(pdata->ztile));
+	if (pdata->proj)
+		mlx_string_put(pdata->mlx_ptr, pdata->win_ptr, 20, 0,
+			0x00FFFFFF, "ISOMETRIC");
+	else
+		mlx_string_put(pdata->mlx_ptr, pdata->win_ptr, 20, 0,
+			0x00FFFFFF, "ORTOGRAPHIC");
 }
 
 void		draw_info2(t_data *pdata)

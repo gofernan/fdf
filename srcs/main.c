@@ -18,6 +18,9 @@ void			init_start(t_data *pdata)
 	pdata->rot_x = 0;
 	pdata->rot_y = 0;
 	pdata->rot_z = 0;
+	pdata->xtile = 40;
+	pdata->ytile = 40;
+	pdata->ztile = 40;
 	pdata->scaling = 1.0;
 	pdata->lines = 1;
 	pdata->move_x = 0;
@@ -25,7 +28,6 @@ void			init_start(t_data *pdata)
 	pdata->mouse_x = 0;
 	pdata->mouse_y = 0;
 	pdata->mouse_press = 0;
-	pdata->proj = 0;
 }
 
 void			init_v(t_data *pdata)
@@ -49,10 +51,9 @@ void			init_v(t_data *pdata)
 		pdata->info = 0;
 	pdata->action = 0;
 	pdata->reset = 0;
-	pdata->xtile = 40;
-	pdata->ytile = 40;
-	pdata->ztile = 40;
 	init_start(pdata);
+	pdata->z_max = 0;
+	pdata->z_min = 0;
 	pdata->proj = 1;
 }
 

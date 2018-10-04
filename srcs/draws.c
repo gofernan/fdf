@@ -72,7 +72,7 @@ void		draw_points(t_data *pdata)
 		while (j < pdata->mcols)
 		{
 			put_pixel(pdata, (pdata->map_x)[i][j] + pdata->center_x,
-					(pdata->map_y)[i][j] + pdata->center_y, 0x00FFFF);
+					(pdata->map_y)[i][j] + pdata->center_y, point_color(pdata, &i, &j));
 			j++;
 		}
 	}
