@@ -105,7 +105,7 @@ int					draw_map(t_data *pdata);
 void				draw_line(t_data *pdata);
 void				draw_info(t_data *pdata);
 void				range_z(t_data *pdata);
-int					point_color(t_data *pdata, int *i, int *j);
+int					point_color(t_data *pdata, int current, int opt);
 void				put_pixel(t_data *pdata, int x, int y, unsigned int color);
 int					key_press(int keycode, t_data *pdata);
 int					mouse_press(int button, int x, int y, t_data *pdata);

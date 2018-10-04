@@ -54,7 +54,8 @@ void			draw_line(t_data *pdata)
 	{
 		if (i > 0)
 		{
-			put_pixel(pdata, pdata->draw->x, pdata->draw->y, 0x24FF00);
+			//put_pixel(pdata, pdata->draw->x, pdata->draw->y, 0x24FF00);
+			put_pixel(pdata, pdata->draw->x, pdata->draw->y, point_color(pdata, i, 1));
 			//put_pixel(pdata, x, y, get_color(pdata, &i));
 		}
 		while (pdata->draw->p >= 0)
