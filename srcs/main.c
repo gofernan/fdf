@@ -19,6 +19,7 @@ void			init_start(t_data *pdata)
 	pdata->rot_y = 0;
 	pdata->rot_z = 0;
 	pdata->scaling = 1.0;
+	pdata->lines = 1;
 	pdata->move_x = 0;
 	pdata->move_y = 0;
 	pdata->mouse_x = 0;
@@ -52,6 +53,7 @@ void			init_v(t_data *pdata)
 	pdata->ytile = 40;
 	pdata->ztile = 40;
 	init_start(pdata);
+	pdata->proj = 1;
 }
 
 int		main(int argc, char **argv)
@@ -65,7 +67,6 @@ int		main(int argc, char **argv)
 	printf("value 1 1: %d\n", (data.matrix)[0][0]);
 	printf("value mrows: %d, value mcols: %d\n", data.mrows, data.mcols);
 	init_v(&data);
-	//information(&data);
 	create_map(&data);
 	map_size(&data);
 	convert_map(&data);

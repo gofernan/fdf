@@ -1,7 +1,7 @@
 NAME = fdf
 CC = clang
-#CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -Lminilibx -lmlx -framework OpenGL -framework AppKit
-CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -lmlx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -Lminilibx -lmlx -framework OpenGL -framework AppKit
+#CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -lmlx -framework OpenGL -framework AppKit
 SDIR = srcs
 ODIR = objs
 IDIR = include
@@ -38,7 +38,7 @@ DONE = echo "\033[0;32m[ ✔ ] Done\033[0m"
 all: $(NAME)
 
 $(ODIR)/%.o: $(SDIR)/%.c $(LIBFT) $(DEPS)
-	$(CC) -c $< -g -I$(IDIR) -o $@
+	$(CC) -c -Wall -Wextra -Werror $< -g -I$(IDIR) -o $@
 
 $(NAME): $(OBJS)
 	@echo "\033[1;33mCompiling fdf...\033[0m"

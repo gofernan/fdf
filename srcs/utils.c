@@ -64,8 +64,6 @@ void		free_map(t_data *pdata, int opt, int index)
 int			clear_img(t_data *pdata)
 {
 	int i;
-	int j;
-	int pixel;
 
 	i = -1;
 	while (++i <= pdata->tlimit)

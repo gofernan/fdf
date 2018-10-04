@@ -14,18 +14,15 @@
 # define FDF_H
 
 # include <unistd.h>
-//# include "../minilibx/mlx.h"
-# include <mlx.h>
+# include "../minilibx/mlx.h"
+//# include <mlx.h>
 # include <math.h>
 # include "../libft/include/libft.h"
 # include <stdio.h> // remove after use the printf function
 # include <fcntl.h>
 
 #define W_WIDTH 1600
-#define W_HEIGHT 1200
-//#define TILE_WIDTH 40
-//#define TILE_HEIGHT 40
-//#define TILE_Z 20
+#define W_HEIGHT 1000
 
 typedef struct		s_draw
 {
@@ -33,12 +30,15 @@ typedef struct		s_draw
 	int				x2;
 	int				y1;
 	int				y2;
-	int				color[2];
-	int				dx;
-	int				dy;
-	int				swap;
 	int				s1;
 	int				s2;
+	int				dx;
+	int				dy;
+	int				x;
+	int				y;
+	int				swap;
+	int				p;
+	int				color[2];
 }					t_draw;
 
 typedef struct		s_data
@@ -68,6 +68,7 @@ typedef struct		s_data
 	int				reset;
 	int				info;
 	float			scaling;
+	int				lines;
 	int				rot_x;
 	int				rot_y;
 	int				rot_z;
@@ -76,6 +77,8 @@ typedef struct		s_data
 	float			rot_radz;
 	int				move_x;
 	int				move_y;
+	int				center_x;
+	int				center_y;
 	int				mouse_x;
 	int				mouse_y;
 	int				mouse_press;
@@ -96,9 +99,6 @@ void				pre_convert_map(t_data *pdata);
 int					convert_map(t_data *pdata);
 int					map_size(t_data *pdata);
 int					draw_map(t_data *pdata);
-//int					draw_points(t_data *pdata);
-//int					draw_xlines(t_data *pdata);
-//int					draw_ylines(t_data *pdata);
 void				draw_line(t_data *pdata);
 void				draw_info(t_data *pdata);
 void				put_pixel(t_data *pdata, int x, int y, unsigned int color);

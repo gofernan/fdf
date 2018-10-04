@@ -23,8 +23,8 @@ int			convert_map(t_data *pdata)
 		j = -1;
 		while (++j < pdata->mcols)
 		{
-			(pdata->map_x)[i][j] = j * pdata->ytile;
-			(pdata->map_y)[i][j] = i * pdata->xtile;
+			(pdata->map_x)[i][j] = j * pdata->xtile;
+			(pdata->map_y)[i][j] = i * pdata->ytile;
 			(pdata->map_z)[i][j] = (pdata->matrix)[i][j] * pdata->ztile;
 			if (!pdata->reset)
 			{
@@ -69,9 +69,9 @@ int			create_map(t_data *pdata)
 void		pre_convert_map(t_data *pdata)
 {
 	if (pdata->rot_y)
-		pdata->rot_rady = pdata->rot_y * M_PI / 180;
+		pdata->rot_rady = pdata->rot_y * 3.1415 / 180;
 	if (pdata->rot_x)
-		pdata->rot_radx = pdata->rot_x * M_PI / 180;
+		pdata->rot_radx = pdata->rot_x * 3.1415 / 180;
 	if (pdata->rot_z)
-		pdata->rot_radz = pdata->rot_z * M_PI / 180;
+		pdata->rot_radz = pdata->rot_z * 3.1415 / 180;
 }

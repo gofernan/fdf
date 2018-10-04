@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-int			sign(int x)
+static int		sign(int x)
 {
 	if (x > 0)
 		return (1);
@@ -22,18 +22,14 @@ int			sign(int x)
 		return (0);
 }
 
-void		draw_line(t_data *pdata)
+void			init_draw_line(t_data *pdata)
 {
-	int x;
-	int y;
-	int temp;
-	int p;
-	int i;
+	int		temp;
 
-	x = pdata->draw->x1;
-	y = pdata->draw->y1;
-	pdata->draw->dx = abs(pdata->draw->x2 - pdata->draw->x1);
-	pdata->draw->dy = abs(pdata->draw->y2 - pdata->draw->y1);
+	pdata->draw->x = pdata->draw->x1;
+	pdata->draw->y = pdata->draw->y1;
+	pdata->draw->dx = ft_abs(pdata->draw->x2 - pdata->draw->x1);
+	pdata->draw->dy = ft_abs(pdata->draw->y2 - pdata->draw->y1);
 	pdata->draw->s1 = sign(pdata->draw->x2 - pdata->draw->x1);
 	pdata->draw->s2 = sign(pdata->draw->y2 - pdata->draw->y1);
 	pdata->draw->swap = 0;
@@ -45,28 +41,35 @@ void		draw_line(t_data *pdata)
 		pdata->draw->dy = temp;
 		pdata->draw->swap = 1;
 	}
-	p = 2 * pdata->draw->dy - pdata->draw->dx;
+	pdata->draw->p = 2 * pdata->draw->dy - pdata->draw->dx;
+}
+
+void			draw_line(t_data *pdata)
+{
+	int i;
+
+	init_draw_line(pdata);
 	i = -1;
 	while (++i < pdata->draw->dx)
 	{
 		if (i > 0)
 		{
-			put_pixel(pdata, x, y, 0x24FF00);
+			put_pixel(pdata, pdata->draw->x, pdata->draw->y, 0x24FF00);
 			//put_pixel(pdata, x, y, get_color(pdata, &i));
 		}
-		while (p >= 0)
+		while (pdata->draw->p >= 0)
 		{
-			p = p - 2 * pdata->draw->dx;
+			pdata->draw->p = pdata->draw->p - 2 * pdata->draw->dx;
 			if (pdata->draw->swap)
-				x += pdata->draw->s1;
+				pdata->draw->x += pdata->draw->s1;
 			else
-				y += pdata->draw->s2;
+				pdata->draw->y += pdata->draw->s2;
 		}
-		p = p + 2 * pdata->draw->dy;
+		pdata->draw->p = pdata->draw->p + 2 * pdata->draw->dy;
 		if (pdata->draw->swap)
-			y += pdata->draw->s2;
+			pdata->draw->y += pdata->draw->s2;
 		else
-			x += pdata->draw->s1;
+			pdata->draw->x += pdata->draw->s1;
 	}
 //put_pixel(pdata, x, y, 0xFFFFFF);
 }

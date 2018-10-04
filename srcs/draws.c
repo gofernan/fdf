@@ -21,13 +21,13 @@ void		draw_xlines(t_data *pdata)
 	while (++i < pdata->mrows)
 	{
 		j = 0;
-		pdata->draw->y1 = (pdata->map_y)[i][j] + W_HEIGHT * 0.05;
-		pdata->draw->x1 = (pdata->map_x)[i][j] + W_WIDTH * 0.05;
+		pdata->draw->y1 = (pdata->map_y)[i][j] + pdata->center_y;
+		pdata->draw->x1 = (pdata->map_x)[i][j] + pdata->center_x;
 		//pdata->draw->color[0] = point_color(&i, &j);
 		while (j < pdata->mcols - 1)
 		{
-			pdata->draw->y2 = (pdata->map_y)[i][j + 1] + W_HEIGHT * 0.05;
-			pdata->draw->x2 = (pdata->map_x)[i][j + 1] + W_WIDTH * 0.05;
+			pdata->draw->y2 = (pdata->map_y)[i][j + 1] + pdata->center_y;
+			pdata->draw->x2 = (pdata->map_x)[i][j + 1] + pdata->center_x;
 			//pdata->draw->color[1] = point_color(&i, &j);
 			draw_line(pdata);
 			pdata->draw->x1 = pdata->draw->x2;
@@ -46,12 +46,12 @@ void		draw_ylines(t_data *pdata)
 	while (++j < pdata->mcols)
 	{
 		i = 0;
-		pdata->draw->y1 = (pdata->map_y)[i][j] + W_HEIGHT * 0.05;
-		pdata->draw->x1 = (pdata->map_x)[i][j] + W_WIDTH * 0.05;
+		pdata->draw->y1 = (pdata->map_y)[i][j] + pdata->center_y;
+		pdata->draw->x1 = (pdata->map_x)[i][j] + pdata->center_x;
 		while (i < pdata->mrows - 1)
 		{
-			pdata->draw->y2 = (pdata->map_y)[i + 1][j] + W_HEIGHT * 0.05;
-			pdata->draw->x2 = (pdata->map_x)[i + 1][j] + W_WIDTH * 0.05;
+			pdata->draw->y2 = (pdata->map_y)[i + 1][j] + pdata->center_y;
+			pdata->draw->x2 = (pdata->map_x)[i + 1][j] + pdata->center_x;
 			draw_line(pdata);
 			pdata->draw->x1 = pdata->draw->x2;
 			pdata->draw->y1 = pdata->draw->y2;
@@ -71,8 +71,8 @@ void		draw_points(t_data *pdata)
 		j = 0;
 		while (j < pdata->mcols)
 		{
-			put_pixel(pdata, (pdata->map_x)[i][j] + W_WIDTH * 0.05,
-					(pdata->map_y)[i][j] + W_HEIGHT * 0.05, 0x00FFFF);
+			put_pixel(pdata, (pdata->map_x)[i][j] + pdata->center_x,
+					(pdata->map_y)[i][j] + pdata->center_y, 0x00FFFF);
 			j++;
 		}
 	}
@@ -82,7 +82,6 @@ void		put_pixel(t_data *pdata, int x, int y, unsigned int color)
 {
 	char		*newaddr;
 	int			pixel;
-	int			limit;
 
 	if (x >= 0 && x <= pdata->rlimit && y >= 0)
 	{
@@ -101,8 +100,11 @@ void		put_pixel(t_data *pdata, int x, int y, unsigned int color)
 int			draw_map(t_data *pdata)
 {
 	draw_points(pdata);
-	draw_xlines(pdata);
-	draw_ylines(pdata);
+	if (pdata->lines)
+	{
+		draw_xlines(pdata);
+		draw_ylines(pdata);
+	}
 	draw_info(pdata);
 	return (0);
 }

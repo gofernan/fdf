@@ -19,7 +19,8 @@ int			img_transform(t_data *pdata)
 		clear_img(pdata);
 		if (pdata->rot_x || pdata->rot_y || pdata->rot_z)
 			pre_convert_map(pdata);
-		//map_size(pdata);
+		if (pdata->reset)
+			map_size(pdata);
 		convert_map(pdata);
 		draw_map(pdata);
 		mlx_put_image_to_window(pdata->mlx_ptr, pdata->win_ptr,

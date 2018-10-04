@@ -30,14 +30,14 @@ int			mouse_move(int x, int y, t_data *pdata)
 		if (pdata->mouse_y != y)
 		{
 			pdata->rot_x += y - pdata->mouse_y;
-			pdata->rot_radx = pdata->rot_x * M_PI / 180;
+			pdata->rot_radx = pdata->rot_x * 3.1415 / 180;
 			pdata->mouse_y = y;
 			pdata->action = 1;
 		}
 		if (pdata->mouse_x != x)
 		{
 			pdata->rot_y -= x - pdata->mouse_x;
-			pdata->rot_rady = pdata->rot_y * M_PI / 180;
+			pdata->rot_rady = pdata->rot_y * 3.1415 / 180;
 			pdata->mouse_x = x;
 			pdata->action = 1;
 		}
@@ -47,7 +47,12 @@ int			mouse_move(int x, int y, t_data *pdata)
 
 int			mouse_release(int button, int x, int y, t_data *pdata)
 {
-	pdata->mouse_press = 0;
-	pdata->action = 0;
+	x = 0;
+	y = 0;
+	if (button == 1)
+	{
+		pdata->mouse_press = 0;
+		pdata->action = 0;
+	}
 	return (0);
 }

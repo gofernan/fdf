@@ -99,7 +99,6 @@ int		count_rows(char *file)
 int		retrieve_data(char *file, t_data *pdata)
 {
 	int		fd;
-	int		rowsn;
 	int		clines;
 	int		content;
 
