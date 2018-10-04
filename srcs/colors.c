@@ -42,13 +42,13 @@ int			point_color(t_data *pdata, int current, int opt)
 		if (color1 == color2)
 			return (color1);
 	}
+	if (current <= 0)
+		return (color1);
 	if (!opt)
 		prc = percent(0, pdata->z_max, current);
 	else
 		prc = percent(0, pdata->draw->dx, current);
 	return (get_gradient(prc, color1, color2));
-	//else if (pdata->matrix[*i][*j] < z_alt[1] * 2 / 3)
-	//	return (0x00FF0000);
 }
 /*
 int get_color(t_data *pdata, *i)
