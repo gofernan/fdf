@@ -14,8 +14,8 @@
 # define FDF_H
 
 # include <unistd.h>
-//# include "../minilibx/mlx.h"
-# include <mlx.h>
+# include "../minilibx/mlx.h"
+//# include <mlx.h>
 # include <math.h>
 # include "../libft/include/libft.h"
 # include <fcntl.h>

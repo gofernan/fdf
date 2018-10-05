@@ -57,9 +57,9 @@ int		read_rows(t_data *pdata, int fd, int *content, int clines)
 		{
 			j = -1;
 			while (rowstr[i][++j] != '\0')
-				//FIX
-				if (!isdigit(rowstr[i][j]) && (j == 0 && !isdigit(rowstr[i][j])
-							&& (rowstr[i][0] != '-' && rowstr[i][0] != '+')))
+				if ((!ft_isdigit(rowstr[i][j]) && j != 0) || (j == 0 &&
+					!ft_isdigit(rowstr[i][j]) && (rowstr[i][0] != '-'
+						&& rowstr[i][0] != '+')))
 					return (matrix_error(pdata, &line, &rowstr, clines + 1));
 		}
 		store_matrix(pdata, rowstr, clines);
