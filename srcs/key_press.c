@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 16:12:09 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/28 16:12:11 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/05 00:51:59 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ int			close_window(void *param)
 	exit(0);
 	return (0);
 }
+
 int			key_press3(int keycode, t_data *pdata)
 {
-	if (keycode == 20)
+	if (keycode == 18)
+		pdata->xtile -= 1;
+	else if (keycode == 21)
+		pdata->ytile += 1;
+	else if (keycode == 20)
 		pdata->ytile -= 1;
 	else if (keycode == 22)
 		pdata->ztile += 1;
@@ -63,17 +68,12 @@ int			key_press2(int keycode, t_data *pdata)
 		pdata->move_y += 20;
 	else if (keycode == 19)
 		pdata->xtile += 1;
-	else if (keycode == 18)
-		pdata->xtile -= 1;
-	else if (keycode == 21)
-		pdata->ytile += 1;
 	else if (key_press3(keycode, pdata))
 		;
 	else
 		return (0);
 	return (1);
 }
-
 
 int			key_press(int keycode, t_data *pdata)
 {

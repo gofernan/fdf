@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   colors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/05 00:35:59 by gofernan          #+#    #+#             */
+/*   Updated: 2018/10/05 00:49:32 by gofernan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
-int get_light(int start, int end, double percent)
+int				get_light(int start, int end, double percent)
 {
-    return ((int)((1 - percent) * start + percent * end));
+	return ((int)((1 - percent) * start + percent * end));
 }
 
 int				get_gradient(float percent, int color1, int color2)
@@ -20,15 +32,16 @@ int				get_gradient(float percent, int color1, int color2)
 float			percent(int start, int end, int current)
 {
 	float percent;
+
 	percent = (float)(current - start) / (end - start);
 	return (percent);
 }
 
-int			point_color(t_data *pdata, int current, int opt)
+int				point_color(t_data *pdata, int current, int opt)
 {
-	int color1;
-	int color2;
-	float prc;
+	int		color1;
+	int		color2;
+	float	prc;
 
 	if (!opt)
 	{
@@ -50,21 +63,3 @@ int			point_color(t_data *pdata, int current, int opt)
 		prc = percent(0, pdata->draw->dx, current);
 	return (get_gradient(prc, color1, color2));
 }
-/*
-int get_color(t_data *pdata, *i)
-{
-    int     red;
-    int     green;
-    int     blue;
-    double  percentage;
-
-//	if (pdata->color[0] == pdata->color[1])
-//		return (pdata->color[0]);
-
-	percentage = percent(start.y, end.y, current.y);
-    red = get_light((start.color >> 16) & 0xFF, (end.color >> 16) & 0xFF, percentage);
-    green = get_light((start.color >> 8) & 0xFF, (end.color >> 8) & 0xFF, percentage);
-    blue = get_light(start.color & 0xFF, end.color & 0xFF, percentage);
-    return ((red << 16) | (green << 8) | blue);
-}
-*/

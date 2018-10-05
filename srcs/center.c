@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 16:04:45 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/28 16:04:49 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/05 01:30:09 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int			big_small(t_data *pdata, int **map, int opt)
 	return (bgosm);
 }
 
-
-
 void		map_size_iso(t_data *pdata, int wlim, int hlim)
 {
 	int diffx;
@@ -70,7 +68,6 @@ void		map_size_iso(t_data *pdata, int wlim, int hlim)
 	int	minx;
 	int	miny;
 
-	convert_map(pdata);
 	while ((diffx = ft_abs(big_small(pdata, pdata->map_x, 0)) +
 		big_small(pdata, pdata->map_x, 1)) < wlim)
 		resize_tile(pdata, 1, 1);
@@ -86,61 +83,53 @@ void		map_size_iso(t_data *pdata, int wlim, int hlim)
 	diffx = ft_abs(big_small(pdata, pdata->map_x, 0)) +
 		big_small(pdata, pdata->map_x, 1);
 	diffy = ft_abs(big_small(pdata, pdata->map_y, 0)) +
-		big_small(pdata, pdata->map_y, 1);  
+		big_small(pdata, pdata->map_y, 1);
 	minx = big_small(pdata, pdata->map_x, 0);
 	miny = big_small(pdata, pdata->map_y, 0);
-	minx = minx < 0 ? -minx : minx;
-	miny = miny < 0 ? -miny : miny;
-	pdata->center_x = (W_WIDTH - diffx) / 2 + minx;
-	pdata->center_y = (W_HEIGHT - diffy) / 2 + miny;
+	pdata->center_x = (W_WIDTH - diffx) / 2 + (minx < 0 ? -minx : minx);
+	pdata->center_y = (W_HEIGHT - diffy) / 2 + (miny < 0 ? -miny : miny);
 }
-/*
+
 int			map_size_normal(t_data *pdata, int wlim, int hlim)
 {
+	if (pdata->mcols == 1)
+	{
+		pdata->center_x = W_WIDTH / 2;
+		pdata->center_y = W_HEIGHT / 2;
+		return (0);
+	}
 	while ((pdata->center_x = (pdata->mcols - 1) * pdata->xtile + 1) < wlim)
-		resize_tile(pdata, 1, 0);
+		if (resize_tile(pdata, 1, 0))
+			return (1);
 	while ((pdata->center_y = (pdata->mrows - 1) * pdata->ytile + 1) < hlim)
-		resize_tile(pdata, 1, 0);
+		if (resize_tile(pdata, 1, 0))
+			return (1);
 	while ((pdata->center_x = (pdata->mcols - 1) * pdata->xtile + 1) > wlim)
-		resize_tile(pdata, 0, 0);
+		if (resize_tile(pdata, 0, 0))
+			return (1);
 	while ((pdata->center_y = (pdata->mrows - 1) * pdata->ytile + 1) > hlim)
-		resize_tile(pdata, 0, 0);
+		if (resize_tile(pdata, 0, 0))
+			return (1);
 	pdata->center_x = (pdata->mcols - 1) * pdata->xtile + 1;
 	pdata->center_y = (pdata->mrows - 1) * pdata->ytile + 1;
 	pdata->center_x = (W_WIDTH - pdata->center_x) / 2;
 	pdata->center_y = (W_HEIGHT - pdata->center_y) / 2;
 	return (0);
 }
-*/
 
 int			map_size(t_data *pdata)
 {
 	int wlim;
 	int hlim;
 
-	// ATENTTION COLUMN 1 BREAK ALL
 	wlim = W_WIDTH - W_WIDTH * 0.10;
 	hlim = W_HEIGHT - W_HEIGHT * 0.10;
 	if (pdata->proj)
-		map_size_iso(pdata, wlim, hlim);
-	else
 	{
-		while ((pdata->center_x = (pdata->mcols - 1) * pdata->xtile + 1) < wlim)
-			if (resize_tile(pdata, 1, 0))
-				return (1);
-		while ((pdata->center_y = (pdata->mrows - 1) * pdata->ytile + 1) < hlim)
-			if (resize_tile(pdata, 1, 0))
-				return (1);
-		while ((pdata->center_x = (pdata->mcols - 1) * pdata->xtile + 1) > wlim)
-			if (resize_tile(pdata, 0, 0))
-				return (1);
-		while ((pdata->center_y = (pdata->mrows - 1) * pdata->ytile + 1) > hlim)
-			if (resize_tile(pdata, 0, 0))
-				return (1);
-		pdata->center_x = (pdata->mcols - 1) * pdata->xtile + 1;
-		pdata->center_y = (pdata->mrows - 1) * pdata->ytile + 1;
-		pdata->center_x = (W_WIDTH - pdata->center_x) / 2;
-		pdata->center_y = (W_HEIGHT - pdata->center_y) / 2;
+		convert_map(pdata);
+		map_size_iso(pdata, wlim, hlim);
 	}
+	else
+		map_size_normal(pdata, wlim, hlim);
 	return (0);
 }

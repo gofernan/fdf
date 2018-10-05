@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 16:42:27 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/28 16:42:30 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/05 01:30:39 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 # define FDF_H
 
 # include <unistd.h>
-# include "../minilibx/mlx.h"
-//# include <mlx.h>
+//# include "../minilibx/mlx.h"
+# include <mlx.h>
 # include <math.h>
 # include "../libft/include/libft.h"
-# include <stdio.h> // remove after use the printf function
 # include <fcntl.h>
 
-#define W_WIDTH 1600
-#define W_HEIGHT 1000
+# define W_WIDTH 1600
+# define W_HEIGHT 1000
 
 typedef struct		s_draw
 {
@@ -90,7 +89,8 @@ typedef struct		s_data
 int					main(int argc, char **argv);
 void				init_v(t_data *pdata);
 void				init_start(t_data *pdata);
-int					matrix_error(t_data *pdata, char **line, char ***rowstr, int clines);
+int					matrix_error(t_data *pdata, char **line, char ***rowstr,
+					int clines);
 int					retrieve_data(char *file, t_data *pdata);
 int					specific_error(char *errormsg);
 void				error_msg_clean(char **str, int ***matrix);

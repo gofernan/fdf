@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:36:11 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/28 16:16:39 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/05 00:44:21 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			init_v(t_data *pdata)
 	pdata->proj = 1;
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_data	data;
 
@@ -65,8 +65,6 @@ int		main(int argc, char **argv)
 		return (specific_error("Usage: ./fdf map.fdf\n"));
 	if (retrieve_data(argv[1], &data))
 		return (1);
-	printf("value 1 1: %d\n", (data.matrix)[0][0]);
-	printf("value mrows: %d, value mcols: %d\n", data.mrows, data.mcols);
 	init_v(&data);
 	create_map(&data);
 	map_size(&data);

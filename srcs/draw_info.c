@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 16:20:24 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/28 16:26:01 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/05 00:40:01 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void		draw_info(t_data *pdata)
 	mlx_string_put(pdata->mlx_ptr, pdata->win_ptr, W_WIDTH - 200, 0,
 			0x00FFFFFF, "UP/DOWN/LEFT/RIGHT");
 	mlx_string_put(pdata->mlx_ptr, pdata->win_ptr, W_WIDTH - 400, 20,
-			0x00FFFFFF, "ROTATION:"); 
+			0x00FFFFFF, "ROTATION:");
 	mlx_string_put(pdata->mlx_ptr, pdata->win_ptr, W_WIDTH - 200, 20,
-			0x00FFFFFF, "MOUSE/KEYPAD"); 
+			0x00FFFFFF, "MOUSE/KEYPAD");
 	mlx_string_put(pdata->mlx_ptr, pdata->win_ptr, W_WIDTH - 400, 40,
 			0x00FFFFFF, "ZOOM IN/OUT:");
 	mlx_string_put(pdata->mlx_ptr, pdata->win_ptr, W_WIDTH - 200, 40,
