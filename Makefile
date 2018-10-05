@@ -1,7 +1,6 @@
 NAME = fdf
 CC = clang
-CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -Lminilibx -lmlx -framework OpenGL -framework AppKit
-#CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -lmlx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -lmlx -framework OpenGL -framework AppKit
 SDIR = srcs
 ODIR = objs
 IDIR = include
@@ -21,6 +20,7 @@ _SRCS = main.c \
 		bresenham.c \
 		draw_info.c \
 		center.c \
+		centeraux.c \
 		colors.c
 
 SRCS = $(patsubst %, $(SDIR)/%, $(_SRCS))
