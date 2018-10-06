@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 16:42:27 by gofernan          #+#    #+#             */
-/*   Updated: 2018/10/05 01:30:39 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/05 16:52:25 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define FDF_H
 
 # include <unistd.h>
-# include "../minilibx/mlx.h"
-//# include <mlx.h>
+# include <mlx.h>
 # include <math.h>
 # include "../libft/include/libft.h"
 # include <fcntl.h>
@@ -101,6 +100,7 @@ int					create_map(t_data *pdata);
 void				pre_convert_map(t_data *pdata);
 void				convert_map(t_data *pdata);
 int					map_size(t_data *pdata);
+int					big_small(t_data *pdata, int **map, int opt);
 int					draw_map(t_data *pdata);
 void				draw_line(t_data *pdata);
 void				draw_info(t_data *pdata);
