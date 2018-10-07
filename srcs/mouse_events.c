@@ -14,7 +14,7 @@
 
 int			mouse_press(int button, int x, int y, t_data *pdata)
 {
-	if (button == 1)
+	if (button == 1 && x > 0 && x < W_WIDTH && y > 0 && y < W_HEIGHT)
 	{
 		pdata->mouse_press = 1;
 		pdata->mouse_x = x;

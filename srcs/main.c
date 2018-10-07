@@ -18,9 +18,9 @@ void			init_start(t_data *pdata)
 	pdata->rot_x = 0;
 	pdata->rot_y = 0;
 	pdata->rot_z = 0;
-	pdata->xtile = 40;
-	pdata->ytile = 40;
-	pdata->ztile = 40;
+	pdata->xtile = 10;
+	pdata->ytile = 10;
+	pdata->ztile = 10;
 	pdata->scaling = 1.0;
 	pdata->lines = 1;
 	pdata->move_x = 0;

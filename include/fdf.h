@@ -14,7 +14,8 @@
 # define FDF_H
 
 # include <unistd.h>
-# include <mlx.h>
+//# include <mlx.h>
+# include "../minilibx/mlx.h"
 # include <math.h>
 # include "../libft/include/libft.h"
 # include <fcntl.h>
@@ -58,9 +59,9 @@ typedef struct		s_data
 	int				**map_y;
 	int				**map_z;
 	int				**map_col;
-	int				xtile;
-	int				ytile;
-	int				ztile;
+	float			xtile;
+	float			ytile;
+	float			ztile;
 	int				z_max;
 	int				z_min;
 	int				mrows;

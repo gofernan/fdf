@@ -31,15 +31,15 @@ int			close_window(void *param)
 int			key_press3(int keycode, t_data *pdata)
 {
 	if (keycode == 18)
-		pdata->xtile -= 1;
+		pdata->xtile -= pdata->xtile * 0.1;
 	else if (keycode == 21)
-		pdata->ytile += 1;
+		pdata->ytile += pdata->ytile * 0.1;
 	else if (keycode == 20)
-		pdata->ytile -= 1;
+		pdata->ytile -= pdata->ytile * 0.1;
 	else if (keycode == 22)
-		pdata->ztile += 1;
+		pdata->ztile += pdata->ztile * 0.1;
 	else if (keycode == 23)
-		pdata->ztile -= 1;
+		pdata->ztile -= pdata->ztile * 0.1;
 	else if (keycode == 37)
 		pdata->lines = pdata->lines == 1 ? 0 : 1;
 	else
@@ -67,7 +67,7 @@ int			key_press2(int keycode, t_data *pdata)
 	else if (keycode == 126)
 		pdata->move_y += 20;
 	else if (keycode == 19)
-		pdata->xtile += 1;
+		pdata->xtile += pdata->xtile * 0.1;
 	else if (key_press3(keycode, pdata))
 		;
 	else

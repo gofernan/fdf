@@ -46,6 +46,7 @@ int				point_color(t_data *pdata, int current, int opt)
 	if (!opt)
 	{
 		color1 = 0x463300;
+		//color1 = 0xffffff;
 		color2 = 0xc3b180;
 	}
 	else
@@ -55,11 +56,11 @@ int				point_color(t_data *pdata, int current, int opt)
 		if (color1 == color2)
 			return (color1);
 	}
-	if (current <= 0)
+	if (pdata->z_min == pdata->z_max)
 		return (color1);
 	if (!opt)
-		prc = percent(0, pdata->z_max, current);
+		prc = percent(pdata->z_min, pdata->z_max, current);
 	else
-		prc = percent(0, pdata->draw->dx, current);
+		prc = percent(pdata->z_min, pdata->draw->dx, current);
 	return (get_gradient(prc, color1, color2));
 }

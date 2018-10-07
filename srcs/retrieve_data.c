@@ -22,6 +22,8 @@ int		create_columns(t_data *pdata, char **rowstr, int clines)
 	colsnum = 0;
 	while (rowstr[++i] != 0)
 		colsnum++;
+	if (colsnum == 0)
+		return (1);
 	if (clines == 0)
 		pdata->mcols = colsnum;
 	if (colsnum != pdata->mcols)
@@ -78,6 +80,7 @@ int		count_rows(char *file)
 	int		i;
 
 	counter = 0;
+	i = 0;
 	if (!(str = (char *)malloc(sizeof(char) * 1000)))
 		exit(EXIT_FAILURE);
 	if ((fd = open(file, O_RDONLY)) < 0)
@@ -89,7 +92,7 @@ int		count_rows(char *file)
 			if (str[i] == '\n')
 				counter++;
 	}
-	if (res < 0)
+	if (res < 0 || (res == 0 && i == 0))
 		error_msg_clean(&str, NULL);
 	if (close(fd) < 0)
 		error_msg_clean(&str, NULL);
