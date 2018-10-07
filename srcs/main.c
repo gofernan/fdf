@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:36:11 by gofernan          #+#    #+#             */
-/*   Updated: 2018/10/05 00:44:21 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/07 18:52:14 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,10 @@ void			init_v(t_data *pdata)
 	pdata->pixelbytes = pdata->bpp / 8;
 	pdata->tlimit = W_WIDTH * W_HEIGHT * pdata->bpp / 8 - 1;
 	pdata->rlimit = pdata->size_line / pdata->pixelbytes - 1;
+	pdata->mrows = 0;
+	pdata->mcols = 0;
 	if (!(pdata->draw = (t_draw *)malloc(sizeof(t_draw))))
-	{
-		free_matrix(pdata, pdata->mrows);
 		exit(EXIT_FAILURE);
-	}
 	if (W_WIDTH >= 400 && W_HEIGHT >= 140)
 		pdata->info = 1;
 	else
@@ -63,9 +62,9 @@ int				main(int argc, char **argv)
 
 	if (argc != 2)
 		return (specific_error("Usage: ./fdf map.fdf\n"));
+	init_v(&data);
 	if (retrieve_data(argv[1], &data))
 		return (1);
-	init_v(&data);
 	create_map(&data);
 	map_size(&data);
 	convert_map(&data);

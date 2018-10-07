@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:36:24 by gofernan          #+#    #+#             */
-/*   Updated: 2018/10/05 02:44:46 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/07 18:24:47 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int		count_rows(char *file)
 			if (str[i] == '\n')
 				counter++;
 	}
-	if (res < 0 || (res == 0 && i == 0))
-		error_msg_clean(&str, NULL);
-	if (close(fd) < 0)
+	if (i > 0 && str[i - 1] != '\n')
+		counter++;
+	if (res < 0 || (res == 0 && i == 0) || close(fd) < 0)
 		error_msg_clean(&str, NULL);
 	ft_strdel(&str);
 	return (counter);

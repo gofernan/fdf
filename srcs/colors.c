@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 00:35:59 by gofernan          #+#    #+#             */
-/*   Updated: 2018/10/05 00:49:32 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/07 16:25:31 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int				point_color(t_data *pdata, int current, int opt)
 	if (!opt)
 	{
 		color1 = 0x463300;
-		//color1 = 0xffffff;
 		color2 = 0xc3b180;
 	}
 	else

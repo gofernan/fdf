@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 16:42:27 by gofernan          #+#    #+#             */
-/*   Updated: 2018/10/05 16:52:25 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/07 18:52:41 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define FDF_H
 
 # include <unistd.h>
-//# include <mlx.h>
-# include "../minilibx/mlx.h"
+# include <mlx.h>
 # include <math.h>
 # include "../libft/include/libft.h"
 # include <fcntl.h>
@@ -116,7 +115,6 @@ int					close_window(void *param);
 int					img_transform(t_data *pdata);
 int					clear_img(t_data *pdata);
 void				iso(t_data *pdata, int *i, int *j);
-int					stored_correctly(t_data *pdata); // provisional
 void				scaling(t_data *pdata, int *x, int *y);
 void				rotation(t_data *pdata, int *i, int *j);
 void				move_xy(t_data *pdata, int *i, int *j);

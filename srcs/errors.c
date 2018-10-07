@@ -6,7 +6,7 @@
 /*   By: gofernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 09:35:24 by gofernan          #+#    #+#             */
-/*   Updated: 2018/09/28 16:17:47 by gofernan         ###   ########.fr       */
+/*   Updated: 2018/10/07 17:49:22 by gofernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			specific_error(char *errormsg)
 
 void		error_msg_clean(char **str, int ***matrix)
 {
-	perror("Error: ");
+	write(1, "Error\n", 6);
 	if (str)
 		ft_strdel(str);
 	else

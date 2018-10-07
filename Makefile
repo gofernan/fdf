@@ -1,7 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gofernan <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/10/07 18:01:27 by gofernan          #+#    #+#              #
+#    Updated: 2018/10/07 18:57:24 by gofernan         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fdf
 CC = clang
-#CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -lmlx -framework OpenGL -framework AppKit
-CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -Lminilibx -lmlx -framework OpenGL -framework AppKit
+CFLAGS = -Wall -Wextra -Werror -lm -Iinclude -lmlx -framework OpenGL -framework AppKit
 SDIR = srcs
 ODIR = objs
 IDIR = include
@@ -39,35 +50,35 @@ DONE = echo "\033[0;32m[ ✔ ] Done\033[0m"
 all: $(NAME)
 
 $(ODIR)/%.o: $(SDIR)/%.c $(LIBFT) $(DEPS)
-	$(CC) -c -Wall -Wextra -Werror $< -g -I$(IDIR) -o $@
+	@$(CC) -c -Wall -Wextra -Werror $< -I$(IDIR) -o $@
 
 $(NAME): $(OBJS)
 	@echo "\033[1;33mCompiling fdf...\033[0m"
-	$(CC) -o $@ -g $^ -I$(IDIR) $(CFLAGS) $(LIBFT_LIB)
+	@$(CC) -o $@ $^ -I$(IDIR) $(CFLAGS) $(LIBFT_LIB)
 	@$(DONE)
 
 $(LIBFT):
 	@echo "\033[1;33mCompiling libft...\033[0m"
-	$(MAKE) -C $(LDIR)
+	@$(MAKE) -C $(LDIR)
 	@$(DONE)
 
 clean:
 	@echo "\033[1;33mCleaning fdf object files...\033[0m"
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 	@$(DONE)
 	@echo "\033[1;33mCleaning libft object files...\033[0m"
-	$(MAKE) -C $(LDIR) clean
+	@$(MAKE) -C $(LDIR) clean
 	@$(DONE)
 
 fclean:
 	@echo "\033[1;33mCleaning fdf...\033[0m"
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	@$(DONE)
 	@echo "\033[1;33mCleaning fdf object files...\033[0m"
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 	@$(DONE)
 	@echo "\033[1;33mCleaning libft & libft object files...\033[0m"
-	$(MAKE) -C $(LDIR) fclean
+	@$(MAKE) -C $(LDIR) fclean
 	@$(DONE)
 
 re: fclean all
